@@ -22,7 +22,7 @@ while True:
     # gussian blure to remove unnecessary noise
     # blur_gray = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=0)
 
-    cars = car_cascade.detectMultiScale(blur_gray, 1.1, 1)
+    cars = car_cascade.detectMultiScale(gray, 1.1, 1)
 
 
     for (x,y,w,h) in cars:
