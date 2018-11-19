@@ -9,7 +9,7 @@ while(True):
     
     #text inserting
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(frame,'Press C toCapture Image',(5,50), font, 1,(0,0,255),2,cv2.LINE_AA)
+    # cv2.putText(frame,'Press C toCapture Image',(5,50), font, 1,(0,0,255),2,cv2.LINE_AA)
     
     # Display the resulting frame
     cv2.imshow('me',frame)
@@ -19,7 +19,8 @@ while(True):
     if key & 0xFF == ord('q'):
         break
     elif key == ord("c"):
-        cv2.imshow('Capture', frame)
+        img = cv2.imshow('Capture', frame)
+        
 
 # When everything done, release the capture
 cap.release()
