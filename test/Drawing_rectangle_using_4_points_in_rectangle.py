@@ -1,24 +1,32 @@
 import numpy as np
 import cv2
 
-# mouse event handler
+point = ()
 def mouse_drawing(event, x, y, flags, params):
-     if event == cv2.EVENT_LBUTTONDOWN:
-         print(x,y)
+    global point
 
-# Load an color image in grayscale
-img = cv2.imread('test/test.jpg',1)
+    if event == cv2.EVENT_LBUTTONDOWN:
+        point = (x, y)
+        print(x,y)
 
-cv2.namedWindow("img")
-cv2.setMouseCallback("img", mouse_drawing)
+# load the image, clone it, and setup the mouse callback function
+img = cv2.imread('test.jpg')
+cv2.namedWindow("image")
+cv2.setMouseCallback("image", mouse_drawing)
+
+# keep looping until the 'q' key is pressed
+while True:
+	# display the image and wait for a keypress
+	cv2.imshow("image", img)
+	key = cv2.waitKey(1) & 0xFF
+ 
+	# if the 'r' key is pressed, reset the cropping region
+	if key == ord("r"):
+		image = clone.copy()
+ 
+	# if the 'c' key is pressed, break from the loop
+	elif key == ord("c"):
+		break
 
 
-
-cv2.imshow('me',img)
-
-
-k = cv2.waitKey(0)
-if k == 27:         # wait for ESC key to exit
-    cv2.destroyAllWindows()
-elif k == ord('q'): # wait for 's' key to quit
-    cv2.destroyAllWindows()
+cv2.destroyAllWindows()
