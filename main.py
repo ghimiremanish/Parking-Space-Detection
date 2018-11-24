@@ -1,7 +1,10 @@
+#imports
 import cv2
+import numpy as np
 
-cascade_src = 'cars.xml'
-video_src = 'dataset/1.mp4'
+#data source
+cascade_src = '../cars.xml'
+video_src = '../dataset/1.mp4'
 
 #font
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -12,28 +15,21 @@ cap = cv2.VideoCapture(video_src)
 #load trained data
 car_cascade = cv2.CascadeClassifier(cascade_src)
 
-while True:
-    ret, img = cap.read()
-    if (type(img) == type(None)):
+while(True):
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Display the resulting frame
+    cv2.imshow('me',frame)
+
+    key = cv2.waitKey(1)
+    if key & 0xFF == ord('q'):
         break
-    # converting to gray
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    #if c is pressed
+    elif key == ord("c"):
+        #image is captured
+        img = cv2.imshow('Capture', frame)
 
-    # gussian blure to remove unnecessary noise
-    # blur_gray = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=0)
-
-    cars = car_cascade.detectMultiScale(gray, 1.1, 1)
-
-
-    for (x,y,w,h) in cars:
-        cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,255),2)
-
-    # cv2.putText(img,"Number of faces detected: " + str(len(cars)),(500,40), font, 1,(0,0,255),2,cv2.LINE_AA)
-    cv2.putText(img,(str(len(cars))),(50,40), font, 1,(0,0,255),2,cv2.LINE_AA)
-
-    cv2.imshow('video', img)
-
-    if cv2.waitKey(33) == 27:
-        break
-
+# When everything done, release the capture
+cap.release()
 cv2.destroyAllWindows()

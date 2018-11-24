@@ -16,17 +16,23 @@ cv2.setMouseCallback("image", mouse_drawing)
 
 # keep looping until the 'q' key is pressed
 while True:
+
+	#draw a red line
+	if is point:
+		img = cv2.line(img, (0,0), point(300,300), (0,0,255),4)
+
 	# display the image and wait for a keypress
 	cv2.imshow("image", img)
+	
+	
+	
+	
+	
+	
 	key = cv2.waitKey(1) & 0xFF
  
 	# if the 'r' key is pressed, reset the cropping region
 	if key == ord("r"):
-		image = clone.copy()
+		cv2.destroyAllWindows()
  
-	# if the 'c' key is pressed, break from the loop
-	elif key == ord("c"):
-		break
-
-
 cv2.destroyAllWindows()
