@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 
 #data source
-cascade_src = '../cars.xml'
-video_src = '../dataset/1.mp4'
+cascade_src = 'cars.xml'
+video_src = 'dataset/1.mp4'
 
 #font
 font = cv2.FONT_HERSHEY_SIMPLEX
