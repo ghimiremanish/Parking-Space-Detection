@@ -30,7 +30,8 @@ while(True):
     elif key == ord("c"):
         #image is captured and saves to db
         cv2.imwrite( "images/image.jpg", frame );
-        
+        p = polyPoints()
+        p.load()
         
 
 # When everything done, release the capture
