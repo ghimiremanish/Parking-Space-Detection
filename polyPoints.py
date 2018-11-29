@@ -11,6 +11,7 @@ class polyPoints:
         self.point3 = ()
         self.point4 = ()
         self.i = 1
+        self.cord = []
     
     # mouse event handler
     def on_mouse(self,event, x, y, flags, params):
@@ -42,9 +43,11 @@ class polyPoints:
 
             #drwing polygon
             if len(self.point4) != 0:
+                # self.cord.append[(point1,point2,point3,point4)]
                 vrx = np.array((self.point1,self.point2,self.point3,self.point4), np.int32)
                 vrx = vrx.reshape((-1,1,2))
                 img = cv2.polylines(img, [vrx], True, (0,255,255),3)
+                
                 self.point1 = ()
                 self.point2 = ()
                 self.point3 = ()
@@ -55,10 +58,8 @@ class polyPoints:
             
             key = cv2.waitKey(1) & 0xFF
         
-            # if the 'r' key is pressed, reset the cropping region
-            if key == ord("r"):
+            # if the 's' key is pressed, save region and send back to video feed
+            if key == ord("s"):
+                
                 cv2.destroyAllWindows()
-
-# p1 = polyPoints()
-# p1.load()
-            
+     
