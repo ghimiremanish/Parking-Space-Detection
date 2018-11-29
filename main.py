@@ -1,6 +1,7 @@
 #imports
 import cv2
 import numpy as np
+from polyPoints import polyPoints
 
 #data source
 cascade_src = 'cars.xml'
@@ -27,8 +28,10 @@ while(True):
         break
     #if c is pressed
     elif key == ord("c"):
-        #image is captured
-        img = cv2.imshow('Capture', frame)
+        #image is captured and saves to db
+        cv2.imwrite( "images/image.jpg", frame );
+        
+        
 
 # When everything done, release the capture
 cap.release()
