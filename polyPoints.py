@@ -45,6 +45,7 @@ class polyPoints:
             if len(self.point4) != 0:
                 # self.cord.append[(point1,point2,point3,point4)]
                 vrx = np.array((self.point1,self.point2,self.point3,self.point4), np.int32)
+                data = [[self.point1,self.point2,self.point3,self.point4]]
                 vrx = vrx.reshape((-1,1,2))
                 img = cv2.polylines(img, [vrx], True, (0,255,255),3)
                 
@@ -60,6 +61,11 @@ class polyPoints:
         
             # if the 's' key is pressed, save region and send back to video feed
             if key == ord("s"):
-                
-                cv2.destroyAllWindows()
+                f = open('coordinates.txt', 'a')
+                for a in data:
+                    f.write(str(a)+',')
+                cv2.destroyWindow('image')
+                break
+            
+
      

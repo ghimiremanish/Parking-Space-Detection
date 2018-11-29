@@ -2,6 +2,7 @@
 import cv2
 import numpy as np
 from polyPoints import polyPoints
+# form loadCo import loadCo
 
 #data source
 cascade_src = 'cars.xml'
