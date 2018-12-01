@@ -4,6 +4,3 @@ f = open('m.txt', 'a')
 
 for data in arr:
     f.write(str(data)+',')
-
-
-# print(f.read())

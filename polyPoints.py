@@ -34,6 +34,8 @@ class polyPoints:
         img = cv2.imread('images/image.jpg')
         cv2.namedWindow("image")
         cv2.setMouseCallback("image",self.on_mouse)
+        
+        # print self.point
 
         # keep looping until the 'q' key is pressed
         while True:
@@ -45,10 +47,14 @@ class polyPoints:
             if len(self.point4) != 0:
                 # self.cord.append[(point1,point2,point3,point4)]
                 vrx = np.array((self.point1,self.point2,self.point3,self.point4), np.int32)
-                data = [[self.point1,self.point2,self.point3,self.point4]]
+                # data = [[self.point1,self.point2,self.point3,self.point4]]
+                data1 = self.point1
+                data2 = self.point2
+                data3 = self.point3
+                data4 = self.point4
                 vrx = vrx.reshape((-1,1,2))
                 img = cv2.polylines(img, [vrx], True, (0,255,255),3)
-                
+
                 self.point1 = ()
                 self.point2 = ()
                 self.point3 = ()
@@ -56,16 +62,19 @@ class polyPoints:
 
             # display the image and wait for a keypress
             cv2.imshow("image", img)
-            
             key = cv2.waitKey(1) & 0xFF
-        
             # if the 's' key is pressed, save region and send back to video feed
             if key == ord("s"):
                 f = open('coordinates.txt', 'a')
-                for a in data:
-                    f.write(str(a)+',')
+                f.write(str(data1[0])+'\n')
+                f.write(str(data1[1])+'\n')
+                f.write(str(data2[0])+'\n')
+                f.write(str(data2[1])+'\n')
+                f.write(str(data3[0])+'\n')
+                f.write(str(data3[1])+'\n')
+                f.write(str(data4[0])+'\n')
+                f.write(str(data4[1])+'\n')
+
+            elif key == ord("q"):
                 cv2.destroyWindow('image')
                 break
-            
-
-     
