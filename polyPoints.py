@@ -62,6 +62,7 @@ class polyPoints:
 
             # display the image and wait for a keypress
             cv2.imshow("image", img)
+
             key = cv2.waitKey(1) & 0xFF
             # if the 's' key is pressed, save region and send back to video feed
             if key == ord("s"):
@@ -77,4 +78,5 @@ class polyPoints:
 
             elif key == ord("q"):
                 cv2.destroyWindow('image')
-                break
+                # cap.release()
+                # cv2.destroyAllWindows()

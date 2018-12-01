@@ -14,44 +14,5 @@ class loadCo:
 
 
         return arr
-        # c = 0
-        # for i in points:
-        #     if i != '':
-        #         print 'space found'
-        #         c = c+1
-        #         print c
-        #     # print i
-
-        # data manupulating to array
-#         b = ''
-
-#         #for storing stings
-#         val = []
-#         # final array list of polygon 
-#         arr = []
-
-#         #count
-#         c = 0
-
-#         for p in points:
-#             #removing impurities from text to get numbers
-#             if p != '[' and p != '(' and p != ',' and p != ')' and p != ' ' and p != ']':
-#                 val.append(p)
 
         
-#         # for i in val:
-#         #     b = b + i
-#         #     c = c + 1
-#         #     if c == 3:
-#         #         arr.append(int(b))
-#         #         b = ''
-#         #         c = 0
-        
-#         # return arr
-
-
-# c = loadCo()
-# # print(c.output())
-# f = c.output()
-
-# print f
