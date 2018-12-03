@@ -18,6 +18,7 @@ class polyPoints:
         global i,point1,point2,point3,point4,point
         if event == cv2.EVENT_LBUTTONDOWN:
             self.point = (x,y)
+            # print self.point
             if self.i is 1:
                 self.point1 = (x,y)
             elif self.i is 2:
@@ -35,8 +36,6 @@ class polyPoints:
         cv2.namedWindow("image")
         cv2.setMouseCallback("image",self.on_mouse)
         
-        # print self.point
-
         # keep looping until the 'q' key is pressed
         while True:
             #drwaing circle to show click feedback
@@ -45,16 +44,27 @@ class polyPoints:
 
             #drwing polygon
             if len(self.point4) != 0:
-                # self.cord.append[(point1,point2,point3,point4)]
                 vrx = np.array((self.point1,self.point2,self.point3,self.point4), np.int32)
-                # data = [[self.point1,self.point2,self.point3,self.point4]]
-                data1 = self.point1
-                data2 = self.point2
-                data3 = self.point3
-                data4 = self.point4
+
+                #write in coordinates file
+                #file open or append
+                f = open('coordinates.txt', 'a')
+
+                #file start wrinting
+                f.write(str(vrx[0][0])+'\n')
+                f.write(str(vrx[0][1])+'\n')
+                f.write(str(vrx[1][0])+'\n')
+                f.write(str(vrx[1][1])+'\n')
+                f.write(str(vrx[2][0])+'\n')
+                f.write(str(vrx[2][1])+'\n')
+                f.write(str(vrx[3][0])+'\n')
+                f.write(str(vrx[3][1])+'\n')
+                f.close()
+
                 vrx = vrx.reshape((-1,1,2))
                 img = cv2.polylines(img, [vrx], True, (0,255,255),3)
 
+                #reseting the value
                 self.point1 = ()
                 self.point2 = ()
                 self.point3 = ()
@@ -65,19 +75,7 @@ class polyPoints:
 
             key = cv2.waitKey(1) & 0xFF
             # if the 's' key is pressed, save region and send back to video feed
-            if key == ord("s"):
-                f = open('coordinates.txt', 'a')
-                f.write(str(data1[0])+'\n')
-                f.write(str(data1[1])+'\n')
-                f.write(str(data2[0])+'\n')
-                f.write(str(data2[1])+'\n')
-                f.write(str(data3[0])+'\n')
-                f.write(str(data3[1])+'\n')
-                f.write(str(data4[0])+'\n')
-                f.write(str(data4[1])+'\n')
-
-            elif key == ord("q"):
+            if key == ord("q"):
+                f.close()
                 cv2.destroyWindow('image')
                 break
-
-

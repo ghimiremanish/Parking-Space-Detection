@@ -74,12 +74,31 @@ for y in range(0,I.shape[0]):
 finalImage = cropedImage[minY:maxY,minX:maxX]
 
 
+cascade_src = 'cars.xml'
+
+# #font
+font = cv2.FONT_HERSHEY_SIMPLEX
+
+# #load trained data
+car_cascade = cv2.CascadeClassifier(cascade_src)
 
 
+gray = cv2.cvtColor(finalImage, cv2.COLOR_BGR2GRAY)
 
-# cv2.imwrite('finalImage.png',finalImage)
-cv2.imshow('f',finalImage)
+# gussian blure to remove unnecessary noise
+blur_gray = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=0)
 
+cars = car_cascade.detectMultiScale(blur_gray, 1.1, 1)
+
+i = 0
+cars_det = []
+for (x,y,w,h) in cars:
+    i = i+1
+    cars_det.append((i))
+    print i
+
+print cars_det
+cv2.imshow('video', blur_gray)
     
 cv2.waitKey(0)
 cv2.destroyAllWindows()
