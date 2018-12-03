@@ -78,5 +78,6 @@ class polyPoints:
 
             elif key == ord("q"):
                 cv2.destroyWindow('image')
-                # cap.release()
-                # cv2.destroyAllWindows()
+                break
+
+

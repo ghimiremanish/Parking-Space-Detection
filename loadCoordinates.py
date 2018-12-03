@@ -14,5 +14,3 @@ class loadCo:
 
 
         return arr
-
-        
