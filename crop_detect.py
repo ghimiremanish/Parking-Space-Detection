@@ -5,7 +5,7 @@ from loadCoordinates import loadCo
 
 class crop:
     
-    def main(self):
+    def main(self,img):
 
         #load cascade
         cascade_src = 'cars.xml'
@@ -17,7 +17,8 @@ class crop:
         car_cascade = cv2.CascadeClassifier(cascade_src)
 
         # Read a image
-        I = cv2.imread('images/image.jpg')
+        # I = cv2.imread('images/image.jpg')
+        I = img
 
         #load coordinates
         c = loadCo()
@@ -25,6 +26,9 @@ class crop:
 
         #for changing image name 
         count = 0
+
+        #count the number of cars
+        co = 0
 
         #to get multiple crops
         for m in main:
@@ -79,9 +83,9 @@ class crop:
             blur_gray = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=0)
 
             cars = car_cascade.detectMultiScale(blur_gray, 1.1, 1)
+            print cars
 
             if len(cars) != 0:
-                print 'car detected'
+                co = co + 1
             
-c = crop()
-c.main()
+        return co

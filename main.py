@@ -7,12 +7,6 @@ import os
 from polyPoints import polyPoints
 from loadCoordinates import loadCo
 
-#initialize loadcoordinates
-# def init():
-#     c = loadCo()
-#     data = c.output()
-#     return data
-
 #coordinates array
 data = []
 
