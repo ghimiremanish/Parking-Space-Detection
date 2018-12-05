@@ -7,6 +7,15 @@ class crop:
     
     def main(self):
 
+        #load cascade
+        cascade_src = 'cars.xml'
+
+        #font
+        font = cv2.FONT_HERSHEY_SIMPLEX
+
+        #load trained data
+        car_cascade = cv2.CascadeClassifier(cascade_src)
+
         # Read a image
         I = cv2.imread('images/image.jpg')
 
@@ -55,11 +64,24 @@ class crop:
 
             # Now we can crop again just the envloping rectangle
             finalImage = cropedImage[minY:maxY,minX:maxX]
-
-            n = 'images'+str(count)+'.jpg'
-            cv2.imwrite(os.path.join('images/cropped/',n),finalImage)
-            count = count + 1
             
+            #setting the name of image
+            # n = 'images'+str(count)+'.jpg'
 
+            #writing using opencv method
+            # cv2.imwrite(os.path.join('images/cropped/',n),finalImage)
+            # count = count + 1
+
+
+            gray = cv2.cvtColor(finalImage, cv2.COLOR_BGR2GRAY)
+
+            # gussian blure to remove unnecessary noise
+            blur_gray = cv2.GaussianBlur(src=gray, ksize=(5, 5), sigmaX=0)
+
+            cars = car_cascade.detectMultiScale(blur_gray, 1.1, 1)
+
+            if len(cars) != 0:
+                print 'car detected'
+            
 c = crop()
 c.main()
