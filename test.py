@@ -24,21 +24,28 @@ cap = cv2.VideoCapture(video_src)
 #load trained data
 car_cascade = cv2.CascadeClassifier(cascade_src)
 
-#triggring mechanism
-trigger = 0
-
 while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
+
+    #if the file have some data draw rectangle
+    if os.path.getsize('coordinates.txt') !=  0:
+        print 'drawing rectangle!'
+
+        for m in data:
+            vrx = np.array(m, np.int32)
+            vrx = vrx.reshape((-1,1,2))
+            final= cv2.polylines(frame, [vrx], True, (0,255,255),3)
+
+    #if the file has no data
+    else:
+        print 'No Coordinates'
+        final = frame
+
+
+    #print the image
+    cv2.imshow('video feed', final)
     
-    cv2.imshow('triggred',frame)
-
-
-
-
-
-
-
     #if q is pressed then application is quited
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
@@ -53,5 +60,6 @@ while True:
         #image is captured and saves to db
         print 'c is pressed'
         p = polyPoints()
-        p.load()
-        
+        p.load()    
+
+    
