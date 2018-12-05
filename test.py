@@ -32,6 +32,9 @@ while True:
     if os.path.getsize('coordinates.txt') !=  0:
         print 'drawing rectangle!'
 
+
+        
+        # print data
         for m in data:
             vrx = np.array(m, np.int32)
             vrx = vrx.reshape((-1,1,2))
