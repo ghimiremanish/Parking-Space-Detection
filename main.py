@@ -8,8 +8,13 @@ from polyPoints import polyPoints
 from loadCoordinates import loadCo
 
 #initialize loadcoordinates
-c = loadCo()
-data = c.output()
+# def init():
+#     c = loadCo()
+#     data = c.output()
+#     return data
+
+#coordinates array
+data = []
 
 #data source
 cascade_src = 'cars.xml'
@@ -24,14 +29,21 @@ cap = cv2.VideoCapture(video_src)
 #load trained data
 car_cascade = cv2.CascadeClassifier(cascade_src)
 
+#trigger init once
+trigger = 0
 while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
 
     #if the file have some data draw rectangle
     if os.path.getsize('coordinates.txt') !=  0:
-        print 'drawing rectangle!'
 
+        #initializing data once 
+        if len(data) is 0:
+            c = loadCo()
+            data = c.output()
+
+        #printing each coordinates in video frame  with the help of numpy array
         for m in data:
             vrx = np.array(m, np.int32)
             vrx = vrx.reshape((-1,1,2))
@@ -61,3 +73,4 @@ while True:
         print 'c is pressed'
         p = polyPoints()
         p.load()
+        trigger = 1
