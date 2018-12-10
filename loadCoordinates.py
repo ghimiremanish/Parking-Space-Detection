@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 class loadCo:
+    
     f = open('coordinates.txt','r')
 
     def output(self):
@@ -39,16 +40,5 @@ class loadCo:
 
 
 
-
 # c = loadCo()
-# data = c.output()
-
-# frame = cv2.imread('images/image.jpg',1)
-
-# for m in data:
-#     vrx = np.array(m, np.int32)
-#     vrx = vrx.reshape((-1,1,2))
-#     frame= cv2.polylines(frame, [vrx], True, (0,255,255),3)
-
-# cv2.imshow('final',frame)
-# cv2.waitKey(0)
+# print c.output()

@@ -1,3 +1,8 @@
+#saves coordinates in coordinate.txt file
+
+
+
+#imports
 import numpy as np
 import cv2
 
@@ -74,8 +79,9 @@ class polyPoints:
             cv2.imshow("image", img)
 
             key = cv2.waitKey(1) & 0xFF
-            # if the 's' key is pressed, save region and send back to video feed
+            # if the 'q' key is pressed, save region and send back to video feed
             if key == ord("q"):
                 f.close()
-                cv2.destroyWindow('image')
+                # cv2.destroyWindow('image')
+                cv2.destroyAllWindows()
                 break
